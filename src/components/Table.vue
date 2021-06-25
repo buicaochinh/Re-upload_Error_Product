@@ -61,6 +61,7 @@ import { fetchProductList, fetchColorList } from '../hooks/fetchData'
 import { ProductList, ColorList, Product } from '../cores/types'
 import { productIsEqualToEachOther } from '../utils/compare'
 import { pagination, totalPages } from '../utils/pagination'
+import { fromIdColorToValueColor } from '../utils/fromIdColorToValueColor'
 
 const useTable = () => {
   // states
@@ -117,7 +118,11 @@ const useTable = () => {
   const onSubmit = (): void => {
     productsClone.value.forEach((item: Product, index: number) => {
       if (!productIsEqualToEachOther(item, products.value[index])) {
-        changedItems.value.push(item)
+        const newItem = {
+          ...item,
+          color: fromIdColorToValueColor(item.color as number, colors.value)
+        }
+        changedItems.value.push(newItem)
       }
     })
     toggleModal.value = true

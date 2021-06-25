@@ -15,21 +15,24 @@
           :color="item.color"
           :image="item.image"
         ></ModalItem>
-        <div v-if="items.length === 0">{{ empty }}</div>
+        <div v-if="items.length === 0" class="empty-notification">{{ empty }}</div>
       </section>
       <footer class="modal-card-foot">
+        <div class="separator"></div>
         <button class="button is-success" @click="closeModal(true)">OK</button>
+        <button class="button is-danger" @click="closeModal(false)">Cancel</button>
       </footer>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/runtime-core'
+import { defineComponent, PropType } from '@vue/runtime-core'
 
 import ModalItem from './ModalItem.vue'
 
 import { MODAL_TITLE, EMPTY_NOTIFICATION } from '../cores/settings'
+import { ProductList } from 'src/cores/types'
 
 export default defineComponent({
   name: 'Modal',
@@ -40,8 +43,8 @@ export default defineComponent({
       default: false,
     },
     items: {
-      type: Object,
-      default: null,
+      type: Array as PropType<ProductList>,
+      required: true,
     },
   },
   emits: ['closeModal'],
@@ -65,5 +68,12 @@ export default defineComponent({
 
 .modal--block .modal-card {
   margin-top: 4rem;
+}
+
+.empty-notification {
+  text-align: center;
+  line-height: 100px;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 </style>

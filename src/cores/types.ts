@@ -14,7 +14,7 @@ export interface Product {
   image: string,
   name: string,
   sku: string,
-  color: number
+  color: number | string
 }
 
 export type ProductList = Product[]
