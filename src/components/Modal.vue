@@ -14,7 +14,7 @@
           :sku="item.sku"
           :color="item.color"
           :image="item.image"
-        />
+        ></ModalItem>
         <div v-if="items.length === 0">{{ empty }}</div>
       </section>
       <footer class="modal-card-foot">
@@ -41,12 +41,11 @@ export default defineComponent({
     },
     items: {
       type: Object,
-      default: () => {},
+      default: () => { },
     },
   },
   setup(props, context) {
     const closeModal = () => {
-      console.log(props.items);
       context.emit("closeModal");
     };
     return {

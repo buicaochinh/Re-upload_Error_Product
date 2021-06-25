@@ -3,7 +3,11 @@
     <td>{{ id }}</td>
     <td>{{ errorDescription }}</td>
     <td>
-      <img class="product-image" :src="productImage" :alt="productName" />
+      <img
+        class="product-image"
+        :src="productImage !== '' ? productImage : errorImage"
+        :alt="productName"
+      />
     </td>
     <td>
       <input
@@ -11,19 +15,19 @@
         type="text"
         v-model="productNameState"
       />
-      <label :class="{ label: true, error: productNameError !== '' }">{{
-        productNameError
-      }}</label>
+      <label :class="{ label: true, error: productNameError !== '' }">
+        {{
+          productNameError
+        }}
+      </label>
     </td>
     <td>
-      <input
-        :class="{ input: true, 'is-danger': skuError !== '' }"
-        type="text"
-        v-model="skuState"
-      />
-      <label :class="{ label: true, error: skuError !== '' }">{{
-        skuError
-      }}</label>
+      <input :class="{ input: true, 'is-danger': skuError !== '' }" type="text" v-model="skuState" />
+      <label :class="{ label: true, error: skuError !== '' }">
+        {{
+          skuError
+        }}
+      </label>
     </td>
     <td>
       <div class="select">
@@ -32,9 +36,7 @@
             v-for="colorItem in colorList"
             :key="colorItem.id"
             :value="colorItem.id"
-          >
-            {{ colorItem.name }}
-          </option>
+          >{{ colorItem.name }}</option>
         </select>
       </div>
     </td>
@@ -43,8 +45,9 @@
 
 <script lang="ts">
 import { defineComponent, watch } from "@vue/runtime-core";
-import { ref } from "vue";
-import { ErrorType } from "../cores/types";
+import { ref, PropType } from "vue";
+import { ErrorType, Color } from "../cores/types";
+import { ERROR_IMAGE } from "../cores/errors";
 
 import { validateProductName, validateSKU } from "../utils/validator";
 
@@ -52,8 +55,8 @@ export default defineComponent({
   name: "TableRow",
   props: {
     colorList: {
-      type: Array,
-      default: function () {
+      type: Array as PropType<Color[]>,
+      default: function(): Color[] {
         return [];
       },
     },
@@ -88,6 +91,8 @@ export default defineComponent({
     const colorState = ref<number>(cloneProps.color);
     const productNameError = ref<string>("");
     const skuError = ref<string>("");
+
+    const errorImage = ERROR_IMAGE
 
     // watch
     watch(productNameState, (newVal: string, oldVal: string) => {
@@ -131,6 +136,7 @@ export default defineComponent({
       colorState,
       productNameError,
       skuError,
+      errorImage
     };
   },
 });

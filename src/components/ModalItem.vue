@@ -7,7 +7,8 @@
       <h5 class="title is-5">{{ name }}</h5>
       <div>ID: {{ id }}</div>
       <div>
-        SKU: <span class="sku-value">{{ sku }}</span>
+        SKU:
+        <span class="sku-value">{{ sku }}</span>
       </div>
       <div>Color: {{ color }}</div>
     </div>

@@ -1,6 +1,6 @@
 import { Product } from "../cores/types"
 
-export const deepCompare = (_this: Product, _other: Product): boolean => {
+export const productIsEqualToEachOther = (_this: Product, _other: Product): boolean => {
   if (_this.name !== _other.name) {
     return false
   }

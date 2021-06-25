@@ -8,6 +8,7 @@ export type TableFields = Field[]
 
 // Product Type
 export interface Product {
+  [index: string]: number | string;
   id: number,
   errorDescription: string,
   image: string,

@@ -27,7 +27,8 @@ export const TABLE_FIELDS: TableFields = [
   {
     id: 'product_name',
     name: 'Product Name',
-  }, {
+  },
+  {
     id: 'sku',
     name: 'SKU',
   },
@@ -36,3 +37,9 @@ export const TABLE_FIELDS: TableFields = [
     name: 'Color',
   }
 ]
+
+export const fieldCanBeChanged = {
+  PRODUCT_NAME: 'product_name',
+  SKU: 'sku',
+  COLOR: 'color',
+}
