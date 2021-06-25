@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td>{{ id }}</td>
-    <td>{{ errorDescription }}</td>
+    <td>{{ errorDescription || "No Description" }}</td>
     <td>
       <img
         class="product-image"
@@ -13,6 +13,7 @@
       <input
         :class="{ input: true, 'is-danger': productNameError !== '' }"
         type="text"
+        placeholder="Enter Product Name"
         v-model="productNameState"
       />
       <label :class="{ label: true, error: productNameError !== '' }">
@@ -22,7 +23,12 @@
       </label>
     </td>
     <td>
-      <input :class="{ input: true, 'is-danger': skuError !== '' }" type="text" v-model="skuState" />
+      <input
+        :class="{ input: true, 'is-danger': skuError !== '' }"
+        type="text"
+        placeholder="Enter SKU"
+        v-model="skuState"
+      />
       <label :class="{ label: true, error: skuError !== '' }">
         {{
           skuError
@@ -32,6 +38,7 @@
     <td>
       <div class="select">
         <select v-model="colorState">
+          <option class="select__default" :value="-1" disabled>Select Color</option>
           <option
             v-for="colorItem in colorList"
             :key="colorItem.id"
@@ -147,6 +154,9 @@ export default defineComponent({
   width: 5rem;
 }
 
+option.select__default {
+  color: #999;
+}
 .error {
   color: red;
 }

@@ -1,6 +1,6 @@
 <template>
   <div :class="{ modal: true, 'modal--block': toggleModal }">
-    <div class="modal-background"></div>
+    <div class="modal-background" @click="closeModal(false)"></div>
     <div class="modal-card">
       <header class="modal-card-head">
         <p class="modal-card-title">{{ modalTitle }}</p>
@@ -18,7 +18,7 @@
         <div v-if="items.length === 0">{{ empty }}</div>
       </section>
       <footer class="modal-card-foot">
-        <button class="button is-success" @click="closeModal">OK</button>
+        <button class="button is-success" @click="closeModal(true)">OK</button>
       </footer>
     </div>
   </div>
@@ -45,8 +45,8 @@ export default defineComponent({
     },
   },
   setup(props, context) {
-    const closeModal = () => {
-      context.emit("closeModal");
+    const closeModal = (isUpdated: boolean) => {
+      context.emit("closeModal", isUpdated);
     };
     return {
       modalTitle: MODAL_TITLE,

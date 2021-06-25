@@ -33,7 +33,7 @@
       <Loading v-if="loading" />
     </teleport>
     <teleport to="#app">
-      <Modal :toggleModal="toggleModal" @closeModal="closeModal" :items="changedItems" />
+      <Modal :toggleModal="toggleModal" @closeModal="closeModal($event)" :items="changedItems" />
     </teleport>
   </div>
 </template>
@@ -80,7 +80,7 @@ const useTable = () => {
 
   // watch
   watch(currentPage, (newVal: number, oldVal: number) => {
-    productsPage.value = pagination(products.value, newVal);
+    productsPage.value = pagination(productsClone.value, newVal);
   });
 
   // methods
@@ -117,9 +117,11 @@ const useTable = () => {
     });
     toggleModal.value = true;
   };
-  const closeModal = (): void => {
+  const closeModal = (isUpdated: boolean): void => {
     toggleModal.value = false;
-    products.value = productsClone.value;
+    if (isUpdated === true) {
+      products.value = productsClone.value;
+    }
     changedItems.value = [];
   };
 
