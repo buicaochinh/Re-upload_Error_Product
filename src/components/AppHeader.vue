@@ -3,15 +3,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
-import { APP_NAME } from "../cores/settings";
+import { defineComponent } from '@vue/runtime-core'
+import { APP_NAME } from '../cores/settings'
 
 export default defineComponent({
-  name: "AppHeader",
+  name: 'AppHeader',
   setup() {
     return {
       appName: APP_NAME,
-    };
+    }
   },
-});
+})
 </script>

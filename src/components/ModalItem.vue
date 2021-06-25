@@ -16,18 +16,33 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+import { defineComponent } from '@vue/runtime-core'
 
 export default defineComponent({
-  name: "ModalItem",
+  name: 'ModalItem',
   props: {
-    name: String,
-    id: Number,
-    sku: String,
-    color: Number,
-    image: String,
+    name: {
+      type: String,
+      required: true
+    },
+    id: {
+      type: Number,
+      required: true
+    },
+    sku: {
+      type: String,
+      required: true
+    },
+    color: {
+      type: Number,
+      required:true
+    },
+    image: {
+      type: String,
+      required: true
+    }
   },
-});
+})
 </script>
 
 <style scoped>

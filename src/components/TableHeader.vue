@@ -4,20 +4,20 @@
       <th v-for="field in fields" :key="field.id">{{ field.name }}</th>
     </tr>
   </thead>
-</template >
+</template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+import { defineComponent } from '@vue/runtime-core'
 
 // Table fields
-import { TABLE_FIELDS } from "../cores/settings";
+import { TABLE_FIELDS } from '../cores/settings'
 
 export default defineComponent({
-  name: "TableHeader",
+  name: 'TableHeader',
   setup() {
     return {
       fields: TABLE_FIELDS,
-    };
+    }
   },
-});
+})
 </script>

@@ -8,9 +8,9 @@
       <section class="modal-card-body">
         <ModalItem
           v-for="item in items"
+          :id="item.id"
           :key="item.id"
           :name="item.name"
-          :id="item.id"
           :sku="item.sku"
           :color="item.color"
           :image="item.image"
@@ -25,14 +25,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "@vue/runtime-core";
+import { defineComponent } from '@vue/runtime-core'
 
-import ModalItem from "./ModalItem.vue";
+import ModalItem from './ModalItem.vue'
 
-import { MODAL_TITLE, EMPTY_NOTIFICATION } from "../cores/settings";
+import { MODAL_TITLE, EMPTY_NOTIFICATION } from '../cores/settings'
 
 export default defineComponent({
-  name: "Modal",
+  name: 'Modal',
   components: { ModalItem },
   props: {
     toggleModal: {
@@ -41,20 +41,21 @@ export default defineComponent({
     },
     items: {
       type: Object,
-      default: () => { },
+      default: null,
     },
   },
+  emits: ['closeModal'],
   setup(props, context) {
     const closeModal = (isUpdated: boolean) => {
-      context.emit("closeModal", isUpdated);
-    };
+      context.emit('closeModal', isUpdated)
+    }
     return {
       modalTitle: MODAL_TITLE,
       empty: EMPTY_NOTIFICATION,
       closeModal,
-    };
+    }
   },
-});
+})
 </script>
 
 <style scoped>
